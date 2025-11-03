@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shruti Arsode | AI Engineer Intern Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Global CSS Reset & Theme (to match the VIBE look) */
+        :root {
+            --color-primary: #111827; /* gray-900 */
+            --color-secondary: #1e293b; /* slate-800 */
+            --color-accent: #22d3ee; /* cyan-400 */
+            --color-text: #e2e8f0; /* slate-200 */
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-primary);
+            color: var(--color-text);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Custom Scrollbar for Chatbot */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: var(--color-primary);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: var(--color-accent);
+            border-radius: 10px;
+        }
+        .custom-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: var(--color-accent) var(--color-primary);
+        }
+
+        /* Utility Styles (Fallback/Custom) */
+        .text-accent { color: var(--color-accent); }
+        .bg-secondary { background-color: var(--color-secondary); }
+        .shadow-accent { box-shadow: 0 10px 15px -3px rgba(34, 211, 238, 0.3), 0 4px 6px -4px rgba(34, 211, 238, 0.15); }
+        .border-accent { border-color: var(--color-accent); }
+
+        /* Responsive Layout Overrides for Grid (using CSS for robustness) */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        @media (min-width: 768px) { /* md breakpoint */
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) { /* lg breakpoint */
+            .project-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Container for the React-like structure -->
+    <div id="app" class="min-h-screen">
+        
+        <!-- === CONFIGURATION DATA (Embedded JS) === -->
+        <script>
+            const PORTFOLIO_DATA = {
+                name: "Shruti Arsode",
+                title: "AI Engineer Intern Portfolio",
+                bio: "I am an AI Engineer specializing in bridging GenAI capabilities with full-stack web and automation systems. My background in React.js and Computer Vision allows me to build both the intelligent core and the scalable applications that deliver real-world value. This portfolio showcases my transition from software development fundamentals to advanced, AI-driven solutions.",
+                linkedin: "https://linkedin.com/in/shrutiarsode",
+                github: "https://github.com/Shruti192903",
+                email: "shrutiarsode@gmail.com",
+                projects: [
+                    { id: 'data-foundations', title: "Task 1: Data Science Foundations", icon: '📊', tools: ['Python', 'Data Science', 'Machine Learning'], summary: "Completed an intensive Data Science course to build a strong foundation in data analysis, statistical modeling, and machine learning principles.", artifactLink: "https://www.udemy.com/certificate/UC-a949bb5e-26af-4ac9-96fa-546e00f9aecf/" },
+                    { id: 'video-profile', title: "Task 2: AI-Powered Video Profile", icon: '🎥', tools: ['Video Production', 'Career Branding'], summary: "Recorded a short, professional video introducing career journey and goals, covering technical skills (AI/Data Science focus) and key projects. Artifact is a Google Drive video link.", artifactLink: "https://drive.google.com/file/d/1WQf3sePaK_HdIB3jHiAlfnVuThnIBjs-/view?usp=sharing", imagePlaceholder: "https://placehold.co/600x400/1e293b/a5f3fc?text=Video+Profile" },
+                    { id: 'vibe-course', title: "Task 3: Vibe Coding Course", icon: '🎓', tools: ['Vibe Coding', 'AI Application Development'], summary: "Completed the advanced 'Vibe Coding' course, mastering practical AI application development and solidifying the ability to take AI concepts from theory to a working, deployed product.", artifactLink: "https://www.udemy.com/certificate/UC-5a1142fb-8aff-4be3-9d30-8a5e72ec8977" },
+                    { id: 'automation-arena', title: "Task 4: Content Posting Automation", icon: '⚙️', tools: ['Gumloop', 'Google Sheets', 'No-Code', 'Automation'], summary: "Automated repetitive AI-related tasks, specifically content posting, using no-code automation tools like Gumloop to connect various apps and AI services.", artifactLink: "https://www.gumloop.com/pipeline?workbook_id=7hgZaHsi7qCfU31S7eLhvw", imagePlaceholder: "https://placehold.co/600x400/1e293b/a5f3fc?text=Automation+Arena", demoVideo: "https://drive.google.com/file/d/1pee5jSYME3R_whZQghPTuDHJfvP8xTod/view?usp=sharing" },
+                    { id: 'content-repurposer', title: "Task 5: Content Repurposer Agent", icon: '🔄', tools: ['Gumloop', 'Python', 'LangChain', 'Automation'], summary: "Built an AI Agent to scan existing content and repurpose it into new formats (summaries, LinkedIn posts, tweets, short scripts), demonstrating AI automation and content intelligence.", artifactLink: "https://www.gumloop.com/pipeline?workbook_id=fzvWYg2svYpfSviJsWEWKa", imagePlaceholder: "https://placehold.co/600x400/1e293b/a5f3fc?text=Content+Repurposer", demoVideo: "https://drive.google.com/file/d/1UplFRTuBUxxtz_YGMeNnKETSn9x7eyQe/view?usp=sharing" },
+                    { id: 'influencer-tracker', title: "Task 6: AI Influencer Tracker", icon: '🔍', tools: ['Gumloop', 'Automation', 'CSV Output'], summary: "Automated research, collection, and analysis of data for 50+ top AI influencers using a Gumloop workflow. Generated data-driven insights on the strongest AI communities in 2025.", artifactLink: "https://www.gumloop.com/pipeline?workbook_id=7y3GBRdyoYdCzRpQwrDTFK", imagePlaceholder: "https://placehold.co/600x400/1e293b/a5f3fc?text=Influencer+Tracker", demoVideo: "https://drive.google.com/file/d/1iefNZDEo6iC9ag5T4cQsKarq14bZnfDC/view?usp=sharing" },
+                    { id: 'stack-showdown', title: "Task 7: Stack Showdown", icon: '💻', tools: ['MERN', 'Next.js', 'Remix', 'Astro'], summary: "Compared and evaluated MERN, Next.js, Remix, and Astro to determine the best stack for building AI-powered applications (dashboards, chatbots, etc.) and visualized the comparison in a report.", artifactLink: "https://docs.google.com/document/d/1lT2dmYpXDeplIv40ZBr_bBJe-NirNZHuCD3dzoTAR-E/edit?usp=sharing" },
+                    { id: 'content-forge', title: "Task 8: AI Content Forge (SEO)", icon: '✍️', tools: ['LangChain', 'AI APIs', 'SEO Optimization'], summary: "Created three high-quality, SEO-optimized technical articles (AI Agents, Content Tools, Startup Automation) for the ORANTS website, using AI tools for content generation and keyword optimization to maximize Google search visibility.", artifactLink: "https://docs.google.com/document/d/1mS6jklxB3mQ-qgV5c_JhTT94fEEUpdezxYluE9YvQtY/edit?usp=sharing", Technical_Doc : "https://docs.google.com/document/d/1h6xfzbwN97H_LjgukKfbS2Xozgr1pzdSl46PzjCvyhk/edit?usp=sharing" },
+                    { id: 'mood-journal', title: "Task 9: Mood Journal App", icon: '😊', tools: ['React Native', 'AI-Powered Coding', 'Gemini'], summary: "Designed, developed, and demonstrated a mood journal mobile app prototype using AI-powered coding assistance (Gemini, Copilot, etc.) to accelerate app development from idea to a working demo.", artifactLink: "https://docs.google.com/document/d/1aEVf333HE0fQL6bo6xwCCu-fmPSHnJlvaNqPfCqaNmQ/edit?usp=sharing", codeLink: "https://github.com/Shruti192903/Mood_Journal_App", imagePlaceholder: "https://placehold.co/600x400/1e293b/a5f3fc?text=Mobile+App+Screenshot", demoVideo: "https://drive.google.com/file/d/1V_CJ6xUz2n91imcu8EjwzFRLAuMSa7OU/view?usp=sharing" },
+                    { id: 'viral-replicator', title: "Task 10: Viral Replicator", icon: '⚡', tools: ['Gemini 2.5 Flash', 'JSON Schema', 'LangChain'], summary: "Automated production of viral social media posts by reverse-engineering viral anatomy into a structured AI Agent. It uses a strict **JSON Response Schema** to enforce a 'Controversial Executive' persona and rigid content constraints (Hook, 3 Points, CTA).", artifactLink: "https://docs.google.com/document/d/1kb0roONdYKMu_993AZK_BvRpy5_w2ZxHoJgSlDHS8q8/edit?usp=sharing", imagePlaceholder: "https://placehold.co/600x400/1e293b/a5f3fc?text=Viral+Code+Replicator", codeLink: "https://github.com/Shruti192903/Viral_Replicator", demoVideo: "https://drive.google.com/file/d/1IJ7aN14fZAy3i1q_ue_kGaJ5YVNtUezf/view?usp=sharing" },
+                ],
+                tools: [
+                    { name: "Python", icon: "🐍" }, { name: "Next.js", icon: "⚛️" }, { name: "React.js", icon: "⚛️" },
+                    { name: "Tailwind CSS", icon: "🎨" }, { name: "Gemini", icon: "✨" }, { name: "LangChain", icon: "🔗" },
+                    { name: "GPT-4 / OpenAI", icon: "🧠" }, { name: "Gumloop", icon: "🛠️" }, { name: "Computer Vision", icon: "👁️" },
+                    { name: "Odoo", icon: "📦" }
+                ]
+            };
+        </script>
+
+
+        <!-- === HEADER === -->
+        <header class="sticky top-0 z-50 p-4 bg-gray-900 border-b border-cyan-700/30 backdrop-blur-sm">
+            <div class="max-w-7xl mx-auto flex justify-between items-center px-4">
+                <h1 class="text-cyan-400 text-xl md:text-2xl font-extrabold tracking-tight">
+                    <a href="#home"><script>document.write(PORTFOLIO_DATA.title);</script></a>
+                </h1>
+                <nav class="space-x-4 hidden sm:block">
+                    <a href="#home" class="text-cyan-400 text-lg hover:text-white transition duration-200">Home</a>
+                    <a href="#projects" class="text-cyan-400 text-lg hover:text-white transition duration-200">Projects</a>
+                    <a href="#showcase" class="text-cyan-400 text-lg hover:text-white transition duration-200">Showcase</a>
+                    <a href="#tools" class="text-cyan-400 text-lg hover:text-white transition duration-200">Tools</a>
+                    <a href="#about" class="text-cyan-400 text-lg hover:text-white transition duration-200">About</a>
+                </nav>
+                <div class="sm:hidden text-white text-2xl" onclick="alert('Menu not yet implemented')">
+                    ☰
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- === HERO SECTION === -->
+            <section id="home" class="py-20 md:py-32 text-white bg-gray-900">
+                <div class="max-w-5xl mx-auto px-4 text-center">
+                    <p class="text-xl md:text-2xl mb-4 font-mono">Welcome to the Vibe Coding Showcase</p>
+                    <h2 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                        Hi, I'm <span class="text-cyan-400"><script>document.write(PORTFOLIO_DATA.name);</script></span>
+                    </h2>
+                    <p class="text-xl max-w-3xl mx-auto text-slate-300">
+                        <script>document.write(PORTFOLIO_DATA.bio);</script>
+                    </p>
+                    <div class="mt-8 space-x-4">
+                        <button class="px-4 py-2 font-semibold rounded-lg transition duration-300 text-cyan-400 border border-cyan-500/50 hover:bg-slate-700">
+                            <a href="#projects">View Projects</a>
+                        </button>
+                        <button class="px-4 py-2 font-semibold rounded-lg transition duration-300 text-cyan-400 border border-cyan-500/50 hover:bg-slate-700 bg-cyan-700/30">
+                            <a href="#about">Get in Touch</a>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- === PROJECTS SECTION === -->
+            <section id="projects" class="py-16 md:py-24 text-white">
+                <div class="max-w-7xl mx-auto px-4">
+                    <h2 class="text-4xl font-bold mb-4 text-center">
+                        <span class="text-cyan-400">AI Projects</span> & Solutions
+                    </h2>
+                    <p class="text-center text-xl text-slate-400 mb-12">
+                        Interactive cards for each task, linking reports, code, and demos.
+                    </p>
+                    <div id="projects-grid" class="project-grid">
+                        <!-- Project Cards will be inserted here by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- === SHOWCASE SECTION === -->
+            <section id="showcase" class="py-16 md:py-24 text-white bg-slate-800">
+                <div class="max-w-7xl mx-auto px-4">
+                    <h2 class="text-4xl font-bold mb-4 text-center">
+                        Project <span class="text-cyan-400">Showcase</span> (Demos)
+                    </h2>
+                    <p class="text-center text-xl text-slate-400 mb-12">
+                        Visual demos, videos, and key artifact summaries for the highlighted tasks.
+                    </p>
+                    <div id="showcase-grid" class="project-grid">
+                        <!-- Showcase Cards will be inserted here by JavaScript -->
+                    </div>
+                </div>
+            </section>
+            
+            <!-- === TOOLS SECTION === -->
+            <section id="tools" class="py-16 md:py-24 text-white">
+                <div class="max-w-7xl mx-auto px-4">
+                    <h2 class="text-4xl font-bold mb-4 text-center">
+                        My <span class="text-cyan-400">Toolkit</span>
+                    </h2>
+                    <p class="text-center text-xl text-slate-400 mb-12">
+                        All frameworks, libraries, and AI tools mastered during the Vibe Coding journey.
+                    </p>
+                    <div id="tools-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+                        <!-- Tool Cards will be inserted here by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- === ABOUT SECTION === -->
+            <section id="about" class="py-16 md:py-24 text-white bg-slate-800">
+                <div class="max-w-7xl mx-auto px-4">
+                    <h2 class="text-4xl font-bold mb-4 text-center">
+                        <span class="text-cyan-400">About</span> Me
+                    </h2>
+                    <div id="about-content" class="max-w-3xl mx-auto text-center">
+                        <!-- About card will be inserted here by JavaScript -->
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- === FOOTER === -->
+        <footer class="py-8 text-center text-slate-500 text-sm border-t border-cyan-700/30 bg-gray-900">
+            Built with Vanilla JS & CSS. © 2025 <script>document.write(PORTFOLIO_DATA.name);</script>.
+        </footer>
+
+        <!-- === AI CHATBOT === -->
+        <div id="chatbot-container">
+            <!-- Chatbot UI will be inserted here by JavaScript -->
+        </div>
+        
+    </div>
+
+    <!-- === JAVASCRIPT LOGIC === -->
+    <script>
+        const data = PORTFOLIO_DATA; // Use the globally defined data object
+
+        // --- CORE UTILITIES ---
+
+        function VibeCard(content, id = '', className = '') {
+            return `<div id="${id}" class="p-6 rounded-2xl bg-secondary border border-cyan-600/20 shadow-accent ${className} transition duration-300 ease-in-out transform hover:scale-[1.02]">${content}</div>`;
+        }
+        
+        function VibeButton(content, className = '') {
+            return `<button class="px-4 py-2 font-semibold rounded-lg transition duration-300 text-cyan-400 border border-cyan-500/50 hover:bg-slate-700 ${className}">${content}</button>`;
+        }
+
+        // --- SECTIONS RENDERING ---
+
+        function renderProjectCard(project) {
+            const hasShowcase = project.demoVideo || project.video || project.imagePlaceholder;
+            
+            const toolsHtml = project.tools.map(tool => 
+                `<span class="text-xs font-mono px-2 py-1 rounded-full bg-cyan-900 text-cyan-300">${tool}</span>`
+            ).join('');
+
+            const buttons = [
+                project.artifactLink && `<a href="${project.artifactLink}" target="_blank" rel="noopener noreferrer">${VibeButton('Artifact/Report', 'text-sm')}</a>`,
+                project.Technical_Doc && `<a href="${project.Technical_Doc}" target="_blank" rel="noopener noreferrer">${VibeButton('Technical Doc', 'text-sm bg-cyan-700/30')}</a>`,
+                project.codeLink && `<a href="${project.codeLink}" target="_blank" rel="noopener noreferrer">${VibeButton('Code (GitHub)', 'text-sm bg-cyan-700/30')}</a>`,
+                hasShowcase && `<a href="#showcase" onclick="document.getElementById('${project.id}').scrollIntoView({ behavior: 'smooth', block: 'start' });">${VibeButton('View Demo', 'text-sm bg-cyan-700/30')}</a>`
+            ].filter(Boolean).join('');
+
+            const cardContent = `
+                <div class="flex flex-col h-full">
+                    <div class="text-4xl mb-4 p-2 w-min rounded-lg text-cyan-400 bg-cyan-900/40 border border-cyan-400/30">${project.icon}</div>
+                    <h3 class="text-2xl font-bold text-white mb-2">${project.title}</h3>
+                    <p class="text-slate-400 mb-4 flex-grow">${project.summary}</p>
+                    <div class="flex flex-wrap gap-2 mb-4">${toolsHtml}</div>
+                    <div class="mt-auto flex space-x-3 flex-wrap gap-y-3">${buttons}</div>
+                </div>
+            `;
+            return VibeCard(cardContent, project.id, 'h-full flex flex-col');
+        }
+
+        function renderShowcaseCard(p) {
+            const imgHtml = p.imagePlaceholder 
+                ? `<img src="${p.imagePlaceholder}" alt="${p.title} screenshot" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/1e293b/a5f3fc?text=Image+Unavailable';" />`
+                : `<div class="w-full h-full flex items-center justify-center bg-gray-700 text-cyan-400">No Visual Demo Available</div>`;
+
+            const demoLink = p.demoVideo || p.artifactLink;
+            const buttons = [
+                demoLink && `<a href="${demoLink}" target="_blank" rel="noopener noreferrer">${VibeButton('View Demo (Drive)', 'text-sm')}</a>`,
+                p.codeLink && `<a href="${p.codeLink}" target="_blank" rel="noopener noreferrer">${VibeButton('View Code', 'text-sm bg-cyan-700/30')}</a>`
+            ].filter(Boolean).join('');
+
+            const cardContent = `
+                <div class="p-4 flex flex-col h-full">
+                    <h3 class="text-xl font-bold mb-3 text-white">${p.title}</h3>
+                    <p class="text-slate-400 text-sm mb-4 flex-grow">${p.summary}</p>
+                    <div class="aspect-video rounded-xl overflow-hidden border-2 border-cyan-500/50 flex-grow-0">${imgHtml}</div>
+                    <div class="mt-4 flex space-x-3 justify-center">${buttons}</div>
+                </div>
+            `;
+            return VibeCard(cardContent);
+        }
+
+        function renderToolCard(tool) {
+            const content = `
+                <span class="text-5xl mb-2">${tool.icon}</span>
+                <p class="text-lg font-semibold">${tool.name}</p>
+            `;
+            return VibeCard(content, '', 'flex flex-col items-center justify-center p-4 text-center transform hover:bg-slate-700 transition duration-300');
+        }
+
+        function renderAboutSection(data) {
+            const socialButtons = `
+                <div class="flex justify-center space-x-6">
+                    <a href="${data.linkedin}" target="_blank" rel="noopener noreferrer">
+                        ${VibeButton('<span>LinkedIn</span>', 'flex items-center space-x-2')}
+                    </a>
+                    <a href="${data.github}" target="_blank" rel="noopener noreferrer">
+                        ${VibeButton('<span>GitHub</span>', 'flex items-center space-x-2')}
+                    </a>
+                    <a href="mailto:${data.email}">
+                        ${VibeButton('<span>Contact</span>', 'flex items-center space-x-2')}
+                    </a>
+                </div>
+            `;
+            const content = `
+                <p class="text-lg text-slate-300 mb-6">${data.bio}</p>
+                ${socialButtons}
+            `;
+            return VibeCard(content, '', 'p-8 max-w-xl mx-auto');
+        }
+
+        // --- AI CHATBOT LOGIC ---
+
+        const getAiRecommendation = (userQuery, projects) => {
+            const query = userQuery.toLowerCase().trim();
+            let bestMatchId = 'NONE';
+            let maxScore = 0;
+
+            // Simplified keyword matching for vanilla JS demo
+            const keywordScores = {
+                'automation': 3, 'seo': 3, 'social': 2, 'mobile': 2, 'json': 2,
+                'agent': 2, 'tracker': 1, 'video': 1, 'stack': 1, 'app': 2, 'gumloop': 3,
+            };
+            const keywords = query.split(/\s+/);
+
+            for (const project of projects) {
+                let score = 0;
+                const searchableText = `${project.title.toLowerCase()} ${project.summary.toLowerCase()} ${project.tools.join(' ').toLowerCase()}`;
+
+                for (const keyword of keywords) {
+                    if (searchableText.includes(keyword)) {
+                        score += (keywordScores[keyword] || 1); 
+                    }
+                }
+                
+                // Direct match boost (based on ID)
+                if (query.includes('seo') && project.id.includes('content-forge')) score += 4;
+                if ((query.includes('mobile') || query.includes('app')) && project.id.includes('mood-journal')) score += 4;
+                if (query.includes('stack') && project.id.includes('stack-showdown')) score += 4;
+                if (query.includes('viral') && project.id.includes('viral-replicator')) score += 4;
+                if (query.includes('tracker') && project.id.includes('influencer')) score += 4;
+
+                if (score > maxScore) {
+                    maxScore = score;
+                    bestMatchId = project.id;
+                }
+            }
+            return maxScore > 0 ? bestMatchId : 'NONE';
+        };
+
+        function initializeChatbot() {
+            let messages = [
+                { id: 1, text: "Hey! I'm the Vibe Coding Assistant. Tell me what kind of project you're interested in (e.g., 'automation', 'SEO', 'social media') and I'll recommend one of best tasks!", sender: 'AI', recommendedId: null }
+            ];
+            let isLoading = false;
+            let isMaximized = false;
+            const container = document.getElementById('chatbot-container');
+
+            function renderMessages() {
+                const messagesHtml = messages.map(msg => {
+                    const project = data.projects.find(p => p.id === msg.recommendedId);
+                    const recommendationHtml = project ? `
+                        <div class="mt-3 p-3 bg-cyan-900/40 rounded-lg border border-cyan-500/30">
+                            <p class="font-semibold text-cyan-300 mb-1 text-sm">Recommended Project:</p>
+                            <h4 class="text-base font-bold text-white">${project.title}</h4>
+                            <a href="#${project.id}" class="inline-block mt-2" onclick="minimizeChat(); document.getElementById('${project.id}').scrollIntoView({ behavior: 'smooth', block: 'start' });">
+                                ${VibeButton('View Details', 'text-xs')}
+                            </a>
+                        </div>
+                    ` : '';
+
+                    const textHtml = msg.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+                    return `
+                        <div class="flex ${msg.sender === 'User' ? 'justify-end' : 'justify-start'}">
+                            <div class="max-w-[80%] px-3 py-2 rounded-xl text-sm ${msg.sender === 'User' ? 'bg-cyan-600/50 text-white' : 'bg-slate-700/80 text-slate-200'}">
+                                <p class="text-sm">${textHtml}</p>
+                                ${recommendationHtml}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                return `
+                    <div class="flex-grow overflow-y-auto space-y-4 pr-1 mb-3 custom-scrollbar h-[270px]" id="message-list">
+                        ${messagesHtml}
+                        ${isLoading ? '<div class="flex justify-start"><div class="bg-slate-700/80 text-slate-200 px-3 py-2 rounded-xl text-sm"><div class="dot-flashing"></div></div></div>' : ''}
+                        <style>
+                            .dot-flashing { position: relative; width: 5px; height: 5px; border-radius: 5px; background-color: var(--color-accent); color: var(--color-accent); animation: dotFlashing 1s infinite linear alternate; animation-delay: .5s; }
+                            .dot-flashing::before, .dot-flashing::after { content: ""; display: inline-block; position: absolute; top: 0; }
+                            .dot-flashing::before { left: -8px; width: 5px; height: 5px; border-radius: 5px; background-color: var(--color-accent); animation: dotFlashing 1s infinite alternate; animation-delay: 0s; }
+                            .dot-flashing::after { left: 8px; width: 5px; height: 5px; border-radius: 5px; background-color: var(--color-accent); animation: dotFlashing 1s infinite alternate; animation-delay: 1s; }
+                            @keyframes dotFlashing { 0% { opacity: 0.2; } 50% { opacity: 1; } 100% { opacity: 0.2; } }
+                        </style>
+                    </div>
+                `;
+            }
+
+            function scrollToBottom() {
+                const list = document.getElementById('message-list');
+                if (list) {
+                    list.scrollTop = list.scrollHeight;
+                }
+            }
+
+            function renderChatbot() {
+                const minimizedHtml = `
+                    <button id="minimize-btn" onclick="maximizeChat()" class="w-16 h-16 rounded-full flex items-center justify-center text-3xl bg-slate-800 border-cyan-400 border-2 shadow-accent hover:shadow-cyan-500/50 transition-all duration-300" title="Open AI Assistant">
+                        <svg class="w-8 h-8 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4v4a4 4 0 0 0 4 4 4 4 0 0 0 4-4V6a4 4 0 0 0-4-4z"/><path d="M10 14v1a4 4 0 0 0 8 0v-1"/><path d="M5 20h14"/></svg>
+                    </button>
+                `;
+
+                const maximizedHtml = `
+                    <div class="w-full h-full flex flex-col p-4 rounded-2xl bg-secondary border border-cyan-600/20 shadow-accent transition-all duration-300">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-lg font-bold text-cyan-400">Vibe AI Assistant</h3>
+                            <button onclick="minimizeChat()" class="p-0 w-6 h-6 flex items-center justify-center text-xl font-bold border-none bg-cyan-700/30 hover:bg-cyan-700/50 rounded-full text-white" title="Minimize Chat">—</button>
+                        </div>
+                        ${renderMessages()}
+                        <form id="chat-form" class="flex space-x-2">
+                            <input type="text" id="chat-input" placeholder="Ask for a recommendation..." class="flex-grow p-2 rounded-lg bg-slate-700 border border-cyan-500/50 text-white placeholder-slate-400 focus:ring-1 focus:ring-cyan-400 focus:outline-none" ${isLoading ? 'disabled' : ''} />
+                            ${VibeButton(isLoading ? '...' : 'Send', 'text-sm', isLoading ? 'disabled' : '', 'submit')}
+                        </form>
+                    </div>
+                `;
+
+                container.innerHTML = isMaximized 
+                    ? maximizedHtml 
+                    : minimizedHtml;
+
+                if (isMaximized) {
+                    // Re-attach listener and scroll after DOM update
+                    const form = document.getElementById('chat-form');
+                    form.addEventListener('submit', handleChatSubmit);
+                    scrollToBottom();
+                }
+            }
+            
+            window.maximizeChat = () => {
+                isMaximized = true;
+                container.classList.remove('w-16', 'h-16');
+                container.classList.add('w-80', 'h-96');
+                renderChatbot();
+            }
+
+            window.minimizeChat = () => {
+                isMaximized = false;
+                container.classList.remove('w-80', 'h-96');
+                container.classList.add('w-16', 'h-16');
+                renderChatbot();
+            }
+
+            async function handleChatSubmit(e) {
+                e.preventDefault();
+                const inputElement = document.getElementById('chat-input');
+                const userQuery = inputElement.value.trim();
+                
+                if (!userQuery || isLoading) return;
+
+                inputElement.value = '';
+                isLoading = true;
+
+                // 1. Add user message
+                messages.push({ id: Date.now(), text: userQuery, sender: 'User', recommendedId: null });
+                renderChatbot();
+                
+                // 2. Get AI recommendation (simulated)
+                const recommendedId = getAiRecommendation(userQuery, data.projects);
+                const project = data.projects.find(p => p.id === recommendedId);
+
+                let aiResponseText;
+                if (project) {
+                    aiResponseText = `Based on your interest in **'${userQuery}'**, I recommend Task ${project.title.split(': ')[0].replace('Task ', '')}: **${project.title.split(': ')[1]}**. This project focuses on ${project.summary.toLowerCase().split('.')[0]}.`;
+                } else {
+                    aiResponseText = "I see your interest, but none of the current projects perfectly match that specific topic. Try focusing on the available tool categories like 'automation', 'SEO', or 'Gemini'.";
+                }
+
+                // Simulate network delay
+                await new Promise(resolve => setTimeout(resolve, 800));
+                
+                // 3. Add AI message
+                messages.push({ id: Date.now() + 1, text: aiResponseText, sender: 'AI', recommendedId: recommendedId !== 'NONE' ? recommendedId : null });
+                isLoading = false;
+                renderChatbot();
+            }
+
+            // Initial setup and positioning
+            container.className = 'fixed bottom-4 right-4 z-50 w-16 h-16 transition-all duration-300';
+            renderChatbot();
+        }
+
+
+        // --- MAIN ENTRY POINT ---
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Render Project Section
+            const projectsGrid = document.getElementById('projects-grid');
+            projectsGrid.innerHTML = data.projects.map(renderProjectCard).join('');
+
+            // Render Showcase Section
+            const showcaseIds = ['viral-replicator', 'mood-journal', 'influencer-tracker', 'content-repurposer', 'automation-arena', 'video-profile'];
+            const showcaseProjects = showcaseIds.map(id => data.projects.find(p => p.id === id)).filter(p => p);
+            const showcaseGrid = document.getElementById('showcase-grid');
+            showcaseGrid.innerHTML = showcaseProjects.map(renderShowcaseCard).join('');
+
+            // Render Tools Section
+            const toolsGrid = document.getElementById('tools-grid');
+            toolsGrid.innerHTML = data.tools.map(renderToolCard).join('');
+
+            // Render About Section
+            const aboutContent = document.getElementById('about-content');
+            aboutContent.innerHTML = renderAboutSection(data);
+
+            // Initialize Chatbot
+            initializeChatbot();
+        });
+    </script>
+</body>
+</html>
